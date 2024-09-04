@@ -10,6 +10,7 @@ import (
 
 	"github.com/covalenthq/bsp-agent/internal/config"
 	"github.com/covalenthq/bsp-agent/internal/event"
+	"github.com/covalenthq/bsp-agent/internal/ewm"
 	"github.com/covalenthq/bsp-agent/internal/metrics"
 	"github.com/covalenthq/bsp-agent/internal/proof"
 	"github.com/covalenthq/bsp-agent/internal/storage"
@@ -58,6 +59,9 @@ type agentNode struct {
 	// proochain
 	proofchi *proof.ProofchainInteractor
 
+	// covenet
+	covenet *ewm.CovenetInteractor
+
 	// redis derived settings
 	streamKey     string
 	consumerGroup string
@@ -83,6 +87,7 @@ func NewAgentNode(chainType ChainType, aconfig *config.AgentConfig) AgentNode {
 	anode.setupProofchainInteractor()
 	anode.setupWaitGrps()
 	anode.setupMetrics()
+	anode.setupCovenetInteractor()
 
 	switch chainType {
 	case Ethereum:
@@ -180,4 +185,12 @@ func (anode *agentNode) setupWaitGrps() {
 
 func (anode *agentNode) setupMetrics() {
 	anode.blockProofingMetric = metrics.GetOrRegisterTimer("agent/blocks/success", metrics.DefaultRegistry)
+}
+
+func (anode *agentNode) setupCovenetInteractor() {
+	covenetInteractor, err := ewm.NewCovenetInteractor(anode.AgentConfig)
+	if err != nil {
+		log.Fatalf("unable to setup covenet interactor: %v", err)
+	}
+	anode.covenet = covenetInteractor
 }

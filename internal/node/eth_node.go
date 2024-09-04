@@ -200,7 +200,8 @@ func (node *ethAgentNode) encodeProveAndUploadReplicaSegment(ctx context.Context
 	log.Info("submitting block-replica segment proof for: ", currentSegment.SegmentName)
 	proofTxHash := make(chan string, 1)
 	lastBlockReplica := currentSegment.BlockReplicaEvent[len(currentSegment.BlockReplicaEvent)-1]
-	go node.proofchi.SendBlockReplicaProofTx(ctx, currentSegment.EndBlock, lastBlockReplica.Data, replicaSegmentAvro, replicaURL, proofTxHash)
+	// go node.proofchi.SendBlockReplicaProofTx(ctx, currentSegment.EndBlock, lastBlockReplica.Data, replicaSegmentAvro, replicaURL, proofTxHash)
+	go node.covenet.SendCovenetBlockReplicaProofTx(ctx, currentSegment.EndBlock, lastBlockReplica.Data, replicaSegmentAvro, replicaURL, proofTxHash)
 	pTxHash := <-proofTxHash
 
 	switch {

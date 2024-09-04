@@ -11,6 +11,12 @@ type RedisEnvConfig struct {
 	Password string `envconfig:"REDIS_PWD" default:""`
 }
 
+// CovenetEnvConfig (ewm) node config
+type CovenetEnvConfig struct {
+	PrivateKey string `envconfig:"COVENET_PRIVATE_KEY"`
+	GRPCURL    string `envconfig:"COVENET_GRPC_URL"`
+}
+
 // EthEnvConfig contains all config for ethereum / ethereum like (EVM) networks
 type EthEnvConfig struct {
 	RPCURL       string `envconfig:"MB_RPC_URL"`
@@ -26,9 +32,10 @@ type IpfsEnvConfig struct {
 
 // EnvConfig composes all configs into a single env config for the bsp-agent node
 type EnvConfig struct {
-	IpfsConfig  IpfsEnvConfig
-	RedisConfig RedisEnvConfig
-	EthConfig   EthEnvConfig
+	IpfsConfig    IpfsEnvConfig
+	RedisConfig   RedisEnvConfig
+	EthConfig     EthEnvConfig
+	CovenetConfig CovenetEnvConfig
 }
 
 func loadEnvConfig() (*EnvConfig, error) {

@@ -49,6 +49,12 @@ type ChainConfig struct {
 	WebsocketURLs string
 }
 
+// CovenetConfig contains the gRPC url and private key for EWM node
+type CovenetConfig struct {
+	PrivateKey string
+	GRPCURL    string
+}
+
 // MetricsConfig contains config for collecting performance metrics
 type MetricsConfig struct {
 	Enabled        bool
@@ -64,6 +70,7 @@ type AgentConfig struct {
 	ProofchainConfig ProofchainConfig
 	ChainConfig      ChainConfig
 	MetricsConfig    MetricsConfig
+	CovenetConfig    CovenetConfig
 
 	LogFolder string
 }
@@ -100,6 +107,9 @@ func (ac *AgentConfig) getConfigFromEnv(config *EnvConfig) {
 	ac.ChainConfig.PrivateKey = config.EthConfig.PrivateKey
 	ac.ChainConfig.KeystorePath = config.EthConfig.KeystorePath
 	ac.ChainConfig.KeyStorePwd = config.EthConfig.KeyStorePwd
+
+	ac.CovenetConfig.GRPCURL = config.CovenetConfig.GRPCURL
+	ac.CovenetConfig.PrivateKey = config.CovenetConfig.PrivateKey
 }
 
 func (ac *AgentConfig) getConfigFromFlags() {

@@ -1,0 +1,91 @@
+COSMOSv0.46.12 (SIMD) KEYS
+
+- address: cosmos1m4jh5lad3u946arsdgq2n20nry6udfk8s5af9c
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Ag4bebW9RGu/iKicJs6Bi37tlYkmXdDGTjJ6P0NCst08"}'
+  type: local
+
+WARNING: The private key will be exported as an unarmored hexadecimal string. USE AT YOUR OWN RISK. Continue? [y/N]: y
+96891492094e9e3aea0dd33cb6e065dee8331f5736fa93b5629edb4b2073631a
+
+- address: cosmos1ev97aav0j00n87k3vkvh2njxg3kw4u47640nan
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A+ZGVx8UNoT/INhPzVORIpFI3KM7CDZZB3nfgQ9oGxuw"}'
+  type: local
+
+WARNING: The private key will be exported as an unarmored hexadecimal string. USE AT YOUR OWN RISK. Continue? [y/N]: y
+ae87f7015182f1fe893c9b05e6c9412cb7c5531cb3451c033a13da4e5d3b6600
+
+- address: cosmos1gu75xea4v42vshpq8ezgfgvl8w7cf4jnmj3phe
+  name: carol
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A3nIY6xnpwifGeaW0DC82B8wB0jwKDEY0S4Brzdq7ufS"}'
+  type: local
+
+WARNING: The private key will be exported as an unarmored hexadecimal string. USE AT YOUR OWN RISK. Continue? [y/N]: y
+1d77b70a31797a9c11e73f50acfde9422608f1e37de63a8037ad5c6f1c9fac0b
+
+
+- address: cosmos1xggleu0ugckstv08f9yjm88g5k4da2glz48jds
+  name: david
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Ao4XTC7ZUMsNjjeAfFm/kvlpfV0E9EKb1f0uft93gZqZ"}'
+  type: local
+
+WARNING: The private key will be exported as an unarmored hexadecimal string. USE AT YOUR OWN RISK. Continue? [y/N]: y
+8a81accad0711457e225115492e6d490ea4767e49fcb2df10640f1caabf1b06d
+
+
+./build/simd keys export alice \
+    --home ./private/.simapp \
+    --keyring-backend test --unarmored-hex --unsafe
+
+export alice=$(./build/simd keys show alice --address \
+    --home ./private/.simapp \
+    --keyring-backend test)
+
+CXTMOSv0.1.0 (COVENED) KEYS
+
+[COVENETD] cxtmos1u7dkcnw3t39xdg3lxxncjx5ea2zpza8lp2gf0r
+
+alice with address cxtmos1hg3fhd95nst8dqffdf5huvr683qqc3rwmugg7c and mnemonic:
+[IGNITE]   ancient real letter measure army monkey movie cereal broken sun rigid comic
+[IGNITE]   plate food cycle race flock solution book fence curious elevator comic force
+[IGNITE]
+
+bob with address cxtmos1gr49j2u97m53x04dkvpsmkxl8ryyqcczq6t54m and mnemonic:
+[IGNITE]   survey stage radio annual barrel sure mind vanish chuckle economy sauce left
+[IGNITE]   cactus behind fiction crowd enrich inherit fault eagle okay screen elder regular
+[IGNITE]
+
+carol with address cxtmos13sxr6uwvw4cl7puy2ck39s0zsww5pwfdqz2xzh and mnemonic:
+[IGNITE]   dust hobby reform potato put flame limb glad task wonder bachelor outer confirm
+[IGNITE]   warm program will ball cherry filter program tonight twenty figure maid
+[IGNITE]
+
+david with address cxtmos1tev23e5cdf46879tghh8v7fclahplpzl4pfc6s and mnemonic:
+[IGNITE]   leader junior jealous now depend kind fan piece season draw raise upper rubber
+[IGNITE]   zone aunt purse angry knock pottery reward pig office kangaroo pattern
+[IGNITE]
+
+eve with address cxtmos1u7dkcnw3t39xdg3lxxncjx5ea2zpza8lp2gf0r and mnemonic:
+[IGNITE]   fuel dad hard dragon path notable caution garlic melody burger rate acoustic
+[IGNITE]   strong fossil soccer figure pudding usual language area narrow harbor size
+[IGNITE]   chapter
+
+alice  --unarmored-hex --unsafe
+619b2dd7558ffd6f4f0675527e02beff1a3e7cecf13234d043a5e00a6a575cb6
+
+
+bob  --unarmored-hex --unsafe
+54b14b20646947d5d9d07f7cd52ba62254a85102cff072b3899ab08ebb81b7d9
+
+
+carol  --unarmored-hex --unsafe
+2cbaf56ec09a017fcedafcc08146ead957dcbaafdf319c9d36b1df56043fc659
+
+
+david  --unarmored-hex --unsafe
+39fe0bdce51e492f8c581f68d5c8f530872f906cc0f22379648bd2238a72e33a
+
+
+eve  --unarmored-hex --unsafe
+d2e5bea6a544ae98c5164b23dbadd4df58be7910deb44d19064dd6d6e6e6df98
