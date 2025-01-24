@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 
 services:
-  ipfs-pinner:
-    image: "us-docker.pkg.dev/covalent-project/network/ipfs-pinner:stable"
+  ewm-das:
+    image: "us-docker.pkg.dev/covalent-project/network/ewm-das:latest"
     volumes:
       - ~/.ipfs:/root/.ipfs/
-    container_name: ipfs-pinner
+    container_name: ewm-das
     restart: on-failure
     entrypoint: |
       /bin/bash -l -c "
@@ -15,7 +15,7 @@ services:
         xxd -r -p proof_out_hex.txt > proof_from_hex.out;
         chmod +x proof_from_hex.out;
         mv ./proof_from_hex.out /root/.ipfs/proof_from_hex.out;
-        ./ipfs-server -port 3001 -w3-agent-key $W3_AGENT_KEY -w3-delegation-file $W3_DELEGATION_FILE;"
+        ./usr/local/bin/pinner --addr :5080 --w3-agent-key $W3_AGENT_KEY --w3-delegation-proof-path $W3_DELEGATION_FILE;"
     environment:
       - W3_AGENT_KEY=${W3_AGENT_KEY}
       - W3_DELEGATION_FILE=${W3_DELEGATION_FILE}
@@ -69,11 +69,11 @@ services:
       - --deterministic
       - --db=/ganache_data
       - --mnemonic
-      - 'minimum symptom minute gloom tragic situate silver mechanic salad amused elite beef'
+      - "minimum symptom minute gloom tragic situate silver mechanic salad amused elite beef"
       - --networkId
-      - '5777'
+      - "5777"
       - --hostname
-      - '0.0.0.0'
+      - "0.0.0.0"
     depends_on:
       - redis-commander
     networks:
@@ -123,7 +123,7 @@ services:
         sleep 1;
         done;
         echo proof-chain contracts deployed!;
-        ./bsp-agent --redis-url=redis://username:@redis:6379/0?topic=replication-2#replicate --avro-codec-path=./codec/block-ethereum.avsc --binary-file-path=./bin/block-ethereum/  --block-divisor=3  --log-folder ./logs/ --metrics --metrics.port 6063 --metrics.addr 0.0.0.0 --proof-chain-address=0xEa2ff902dbeEECcc828757B881b343F9316752e5 --consumer-timeout=100000 --ipfs-pinner-server="http://ipfs-pinner:3001/";
+        ./bsp-agent --redis-url=redis://username:@redis:6379/0?topic=replication-2#replicate --avro-codec-path=./codec/block-ethereum.avsc --binary-file-path=./bin/block-ethereum/  --block-divisor=3  --log-folder ./logs/ --metrics --metrics.port 6063 --metrics.addr 0.0.0.0 --proof-chain-address=0xEa2ff902dbeEECcc828757B881b343F9316752e5 --consumer-timeout=100000 --ipfs-pinner-server="http://ewm-das:3001/";
         exit 0;"
     environment:
       - MB_PRIVATE_KEY=${PRIVATE_KEY}
