@@ -23,7 +23,7 @@ require (
 	gopkg.in/avro.v0 v0.0.0-20171217001914-a730b5802183
 )
 
-require github.com/stretchr/testify v1.9.0
+require github.com/stretchr/testify v1.10.0
 
 require (
 	cloud.google.com/go/bigquery v1.50.0 // indirect
